@@ -142,7 +142,7 @@ fetch(req)
 		    				articles[i].description != null && articles[i].description != "" && articles[i].description != undefined) {
 		    				if (it === 1) { active = ' active' } else {active = ''}
 			    			render += `
-			    			<div class="col-5 col-xs-8 js-slider-item${active}" data-item="${it}">
+			    			<div class="col-lg-5 col-md-5 col-sm-8 col-xs-8 js-slider-item${active}" data-item="${it}">
 			                  <div class="slider__item">
 			                    <div class="slider__img">
 			                    	<img src="${articles[i].urlToImage}">
