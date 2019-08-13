@@ -1,3 +1,4 @@
+'use strict';
 const slider_main = document.querySelector('.js-slider-main');
 const slider_arrow = document.querySelectorAll('.js-slider-arrow');
 const slider_item = slider_main.children;
@@ -47,13 +48,11 @@ slider_container.addEventListener('mouseup', function(e) {
 
 
 function handleSwipe() {
-	if ((!touchendY <= touchstartY) || (!touchendY >= touchstartY) || (!touchendY === touchstartY)) {
-	    if (touchendX <= touchstartX) {
-	        slider('right')
-	    }
-	    if (touchendX >= touchstartX) {
-	        slider('left')
-	    }
+	if (touchendX <= touchstartX) {
+	    slider('right')
+    }
+	if (touchendX >= touchstartX) {
+        slider('left')
 	}
 }
 
