@@ -1,10 +1,6 @@
-# flsns - Simple Native Slider
+'use strict';
 
-### JavaScript source in /flsns.js
-
-[Demo](https://tltary.github.io/flsns/index.html)
-
-```js
+function sliderInit() {
 	const slider_main = document.querySelector('.js-slider-main');
 	const slider_arrow = document.querySelectorAll('.js-slider-arrow');
 	const slider_item = slider_main.children;
@@ -121,5 +117,60 @@
 			item_active = item_width = item_translate = item_next = null;
 		}
 	}
-```
+}
 
+let url = 'https://newsapi.org/v2/top-headlines?' +
+          'country=ru&' +
+          'apiKey=966af24d680a417283e608cf4cc07920';
+let req = new Request(url);
+fetch(req)
+    .then(
+    	function(req) {
+    		return new Promise(function(res, rej){
+    			res(req.json());
+    		}).then(
+		    	function(response) {
+		    		let articles = response.articles;
+		    		let slider_main_render = document.querySelector('.js-slider-main');
+					let slider_bullet_render = document.querySelector('.js-slider-bullet-block');
+		    		let render = ``;
+		    		let render_bullet = ``;
+		    		let it = 1;
+		    		let active = '';
+		    		for (let i = 0;i < articles.length;i = i + 1) {
+		    			if (articles[i].urlToImage != null && articles[i].urlToImage != "" && articles[i].urlToImage != undefined && 
+		    				articles[i].description != null && articles[i].description != "" && articles[i].description != undefined) {
+		    				if (it === 1) { active = ' active' } else {active = ''}
+			    			render += `
+			    			<div class="col-5 col-xs-8 js-slider-item${active}" data-item="${it}">
+			                  <div class="slider__item">
+			                    <div class="slider__img">
+			                    	<img src="${articles[i].urlToImage}">
+			                    </div>
+			                    <div class="slider__text">
+			                      <p class="slider__text__title">
+			                      	${articles[i].title}
+			                      </p>
+			                      <p class="slider__text__description">
+			                        ${articles[i].description}
+			                      </p>
+			                      <a href="${articles[i].url}" target="_blank" class="slider__text__link">
+			                      	Читать далее
+			                      </a>
+			                    </div>
+			                  </div>
+			                </div>`;
+			                render_bullet += `
+			                	<li class="js-slider-bullet slider__bullet${active}" data-bullet="${it}"></li>
+			                `;
+			                it = it + 1;
+		    			}
+		    		}
+		    		slider_main_render.innerHTML = render;
+					slider_bullet_render.innerHTML = render_bullet;
+					articles = slider_main_render = slider_bullet_render = render = render_bullet = it = null;
+					sliderInit();
+		    	}
+		    );
+    	}
+    )

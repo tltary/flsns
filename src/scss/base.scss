@@ -1,0 +1,152 @@
+@import "components/vendor/destyle";
+
+body {
+	background: {
+		color: #fff;
+	}
+}
+
+.title {
+	font-size: 24px;
+	margin-bottom: 15px;
+	margin-top: 10px;
+}
+
+.annotation {
+	margin-bottom: 15px;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.link {
+	color: #4a76a8;
+	&__github {
+		float: right;
+		font-size: 16px;
+		vertical-align: bottom;
+	}
+}
+
+.code {
+	margin-top: 30px;
+	&__pre {
+		border: none !important;
+		padding: 15px;
+	}
+}
+
+.slider {
+	width: 100%;
+	overflow: hidden;
+	&__arrow {
+		padding: 25px;
+	    font-size: 0px;
+	    margin: 0px 15px;
+	    transition: opacity .3s ease-in-out;
+	    position: relative;
+	    display: inline-block;
+	    cursor: pointer;
+	    &.disabled {
+	    	opacity: 0.5;
+	    	cursor: no-drop;
+	    }
+	    &__block {
+	    	text-align: center;
+	    }
+		&--left {
+			&:before {
+				content: '';
+				position: absolute;
+				width: 15px;
+				height: 2px;
+				background-color: #000;
+				transform: rotate(-45deg);
+				top: calc(50% - (12px / 2));
+			}
+			&:after {
+				content: '';
+				position: absolute;
+				width: 15px;
+				height: 2px;
+				background-color: #000;
+				transform: rotate(45deg);
+				bottom: calc(50% - (12px / 2));
+			}
+		}
+		&--right {
+			&:before {
+				content: '';
+				position: absolute;
+				width: 15px;
+				height: 2px;
+				background-color: #000;
+				transform: rotate(45deg);
+				top: calc(50% - (12px / 2));
+			}
+			&:after {
+				content: '';
+				position: absolute;
+				width: 15px;
+				height: 2px;
+				background-color: #000;
+				transform: rotate(-45deg);
+				bottom: calc(50% - (12px / 2));
+			}
+		}
+	}
+	&__bullet {
+	    padding: 5px;
+	    font-size: 0px;
+	    margin: 0px 5px;
+	    background-color: #3e3e3e;
+	    transition: background-color .3s ease-in-out;
+	    display: inline-block;
+	    border-radius: 50%;
+	    cursor: pointer;
+    	&.active {
+    		background-color: #e3e3e3;
+    		cursor: default;
+    	}
+		&__block {
+			text-align: center;
+		}
+		&__content {
+
+		}
+
+	}
+	&__container {
+		width: 100%;
+	}
+	&__content {
+		display: flex;
+		transition: transform .3s ease-in-out;
+	}
+	&__item {
+		border: 2px #3e3e3e solid;
+		border-radius: 5px;
+	}
+	&__img {
+		img {
+			width: 100%;
+		}
+	}
+	&__text {
+		padding: 10px;
+		&__description {
+			font-size: 14px;
+			margin-bottom: 10px;
+
+		}
+		&__title {
+			font-size: 18px;
+			font-weight: bold;
+			margin-bottom: 10px;
+		}
+		&__link {
+			font-size: 16px;
+			color: #4a76a8;
+		}
+	}
+
+}
