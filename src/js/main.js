@@ -22,34 +22,42 @@ function sliderInit() {
 
 	let touchstartX = 0;
 	let touchendX = 0;
+	let touchstartY = 0;
+	let touchendY = 0;
 
 	slider_container.addEventListener('touchstart', function(e) {
 	    touchstartX = e.changedTouches[0].screenX;
+	    touchstartY = e.changedTouches[0].screenY;
 	}, false);
 
 	slider_container.addEventListener('touchend', function(e) {
 	    touchendX = e.changedTouches[0].screenX;
+	    touchendY = e.changedTouches[0].screenY;
 	    handleSwipe();
 	}, false); 
 
 	slider_container.addEventListener('mousedown', function(e) {
 	    touchstartX = e.screenX;
+	    touchstartY = e.screenY;
 	}, false);
 
 	slider_container.addEventListener('mouseup', function(e) {
 	    touchendX = e.screenX;
+	    touchendY = e.screenY;
 	    handleSwipe();
 	}, false); 
 
 
 
 	function handleSwipe() {
-	    if (touchendX <= touchstartX) {
-	        slider('right')
-	    }
-	    if (touchendX >= touchstartX) {
-	        slider('left')
-	    }
+		if ((!touchendY <= touchstartY) || (!touchendY >= touchstartY) || (!touchendY === touchstartY)) {
+		    if (touchendX <= touchstartX) {
+		        slider('right')
+		    }
+		    if (touchendX >= touchstartX) {
+		        slider('left')
+		    }
+		}
 	}
 
 	function sliderBullet(item) {
@@ -110,7 +118,11 @@ function sliderInit() {
 			slider_arrow[1].classList.add('disabled');
 		}
 		if (item_next !== undefined) {
+			for (let i = 0;i < slider_bullet.length;i = i + 1) {
+				slider_bullet[i].classList.remove('active')
+			}
 			item_translate = item_next * item_width;
+			slider_bullet[item_next].classList.add('active')
 			slider_item[item_active].classList.remove('active');
 			slider_item[item_next].classList.add('active');
 			slider_main.setAttribute('style',`transform: translate(-${item_translate}px, 0px);`);
