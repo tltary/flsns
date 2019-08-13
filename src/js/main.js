@@ -45,17 +45,19 @@ function sliderInit() {
 	    touchendX = e.screenX;
 	    touchendY = e.screenY;
 	    handleSwipe();
-	}, false); 
+	}, false);
 
 
 
 	function handleSwipe() {
+
 		if (touchendX <= touchstartX) {
 		    slider('right')
-	    }
-		if (touchendX >= touchstartX) {
+		};
+	    if (touchendX >= touchstartX) {
 	        slider('left')
-		}
+	    };
+
 	}
 
 	function sliderBullet(item) {
