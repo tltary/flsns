@@ -37,17 +37,16 @@ slider_container.addEventListener('mouseup', function(e) {
     touchendY = e.screenY;
     handleSwipe();
 }, false);
-
-function handleSwipe() {
-    if ((touchstartX - touchendX) >= 100) {
+let handleSwipe = () => {
+    let calc = touchstartX - touchendX;
+    if ((calc) >= 100) {
         slider('right')
     };
-    if ((touchendX - touchstartX) >= 100) {
+    if ((calc) <= -100) {
         slider('left')
     };
 }
-
-function sliderBullet(item) {
+let sliderBullet = (item) => {
     let item_active;
     let item_width;
     let item_translate;
@@ -70,8 +69,7 @@ function sliderBullet(item) {
     slider_main.setAttribute('style', `transform: translate(-${item_translate}px, 0px);`);
     item_active = item_width = item_translate = item_next = null;
 }
-
-function slider(dir, el) {
+let slider = (dir, el) => {
     let item_active;
     let item_width;
     let item_translate;
@@ -113,6 +111,5 @@ function slider(dir, el) {
         slider_item[item_active].classList.remove('active');
         slider_item[item_next].classList.add('active');
         slider_main.setAttribute('style', `transform: translate(-${item_translate}px, 0px);`);
-        item_active = item_width = item_translate = item_next = null;
     }
 }
