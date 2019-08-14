@@ -50,11 +50,10 @@ function sliderInit() {
 
 
 	function handleSwipe() {
-
-		if (touchendX <= touchstartX) {
+		if ((touchstartX - touchendX) >= 100) {
 		    slider('right')
 		};
-	    if (touchendX >= touchstartX) {
+	    if ((touchendX - touchstartX) >= 100) {
 	        slider('left')
 	    };
 
