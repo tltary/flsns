@@ -51,10 +51,10 @@ let sliderInit = () => {
 
 	let handleSwipe = () => {
 		let calc = touchstartX - touchendX;
-		if ((calc) >= 100) {
+		if ((calc) >= 50) {
 		    slider('right')
 		};
-	    if ((calc) <= -100) {
+	    if ((calc) <= -50) {
 	        slider('left')
 	    };
 	}

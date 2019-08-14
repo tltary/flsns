@@ -39,10 +39,10 @@ slider_container.addEventListener('mouseup', function(e) {
 }, false);
 let handleSwipe = () => {
     let calc = touchstartX - touchendX;
-    if ((calc) >= 100) {
+    if ((calc) >= 50) {
         slider('right')
     };
-    if ((calc) <= -100) {
+    if ((calc) <= -50) {
         slider('left')
     };
 }
