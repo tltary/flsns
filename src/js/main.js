@@ -1,6 +1,6 @@
 'use strict';
 
-function sliderInit() {
+let sliderInit = () => {
 	const slider_main = document.querySelector('.js-slider-main');
 	const slider_arrow = document.querySelectorAll('.js-slider-arrow');
 	const slider_item = slider_main.children;
@@ -49,17 +49,17 @@ function sliderInit() {
 
 
 
-	function handleSwipe() {
-		if ((touchstartX - touchendX) >= 100) {
+	let handleSwipe = () => {
+		let calc = touchstartX - touchendX;
+		if ((calc) >= 100) {
 		    slider('right')
 		};
-	    if ((touchendX - touchstartX) >= 100) {
+	    if ((calc) <= -100) {
 	        slider('left')
 	    };
-
 	}
 
-	function sliderBullet(item) {
+	let sliderBullet = (item) => {
 		let item_active;
 		let item_width;
 		let item_translate;
@@ -83,7 +83,7 @@ function sliderInit() {
 		item_active = item_width = item_translate = item_next = null;
 	}
 
-	function slider(dir, el) {
+	let slider = (dir, el) => {
 		let item_active;
 		let item_width;
 		let item_translate;
@@ -125,7 +125,6 @@ function sliderInit() {
 			slider_item[item_active].classList.remove('active');
 			slider_item[item_next].classList.add('active');
 			slider_main.setAttribute('style',`transform: translate(-${item_translate}px, 0px);`);
-			item_active = item_width = item_translate = item_next = null;
 		}
 	}
 }
@@ -136,11 +135,11 @@ let url = 'https://newsapi.org/v2/top-headlines?' +
 let req = new Request(url);
 fetch(req)
     .then(
-    	function(req) {
-    		return new Promise(function(res, rej){
+    	(req) => {
+    		return new Promise((res, rej) => {
     			res(req.json());
     		}).then(
-		    	function(response) {
+		    	(response) => {
 		    		let articles = response.articles;
 		    		let slider_main_render = document.querySelector('.js-slider-main');
 					let slider_bullet_render = document.querySelector('.js-slider-bullet-block');
